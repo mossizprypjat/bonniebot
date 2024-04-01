@@ -1,20 +1,25 @@
+import configparser
 from datetime import datetime
 
 from functions import astronomy
 
 # add the apod you want to save here
-apod_list = ["2023-09-07",
-             "2023-09-08",
-             "2023-09-13",
-             "2023-10-13",
-             "2023-12-14",
-             "2024-01-10",
-             "2024-02-06",
-             "2024-02-18",
-             "2024-03-05"]
+apod_list = [
+    "2023-09-07",
+    "2023-09-08",
+    "2023-09-13",
+    "2023-10-13",
+    "2023-12-14",
+    "2024-01-10",
+    "2024-02-06",
+    "2024-02-18",
+    "2024-03-05",
+]
 
+config = configparser.ConfigParser()
+config.read("config.ini")
 # change this to the directory you prefer
-directory = "/home/jalog/Documents/ugent/Ba2/Semester 2/Sterrenstelsels/APOD/potential_apods"
+directory = config["credentials"]["directory"]
 
 
 def list_to_date(date_string):
