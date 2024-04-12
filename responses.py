@@ -8,17 +8,34 @@ def handle_response(message) -> str:
     p_message = message.lower()
     begin = p_message.split(" ")[0]
     respones = {
-        'hello bonnie': 'HIIII :3', 'hi bonnie': 'HIIII :3', 'bye bonnie': 'bye bitch :3',
-        "danku bonnie": "no problem :3", "thx bonnie": "no problem :3", "thank you bonnie": "no problem :3",
+        "hello bonnie": "HIIII :3",
+        "hi bonnie": "HIIII :3",
+        "bye bonnie": "bye bitch :3",
+        "danku bonnie": "no problem :3",
+        "thx bonnie": "no problem :3",
+        "thank you bonnie": "no problem :3",
         ":3": "meow :3",
-        "!help": "functions:\n 'sunset [place] [date]'= gives the time of the sunset on a certain place and/or date\n"
-                 "'sunrise [place] [date]'= the same but sunset\n'noon [place] [date]'= the same but noon\n'apod'=NASA"
-                 "astronomy picture of the day\n '!roll' = rolls a dice"}
-    function_astronomy = {
-        "sunset",
-        "sunrise",
-        "noon"
+        "!help": "functions:\n\n "
+        "- 'sunset [place] [date] [timezone (gmt+x)]':\n"
+        "gives the time of the sunset on a certain place and/or date, "
+        "if date isn't specified it uses the current date, if timezone isn't specified it uses gmt \n"
+        "example: sunset nepal 20/3/2004 3\n\n"
+        "- 'sunrise [place] [date]':\n"
+        "gives the time of the sunrise on a certain place and/or date, "
+        "if date isn't specified it uses the current date, if timezone isn't specified it uses gmt \n"
+        "example: sunrise nepal 20/3/2004 3\n\n"
+        "- 'noon [place] [date]':\n"
+        "gives the time of the noon on a certain place and/or date, "
+        "if date isn't specified it uses the current date, if timezone isn't specified it uses gmt \n"
+        "example: noon nepal 20/3/2004 3\n\n"
+        "- 'apod [date]': \n"
+        "NASA astronomy picture of the day, if the date isn't specified it uses the current date\n"
+        "example: apod 20/3/2004\n\n"
+        "- '!roll [number]':\n"
+        "rolls a dice, if you don't specify a number it rolls a d6\n"
+        "example: !roll 1 2\n\n",
     }
+    function_astronomy = {"sunset", "sunrise", "noon"}
     if p_message in respones:
         return respones[p_message]
     elif "!roll" in p_message:
@@ -70,5 +87,5 @@ def get_date(p_message):
 
 def roll(p_message):
     parts = p_message.split(" ")
-    i = (int(parts[1]) if len(parts) > 1 else 6)
+    i = int(parts[1]) if len(parts) > 1 else 6
     return str(random.randint(a=1, b=i))

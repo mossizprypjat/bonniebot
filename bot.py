@@ -1,18 +1,23 @@
-import configparser
+import os
 
 import discord
 
 import responses
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-discord_key = config['credentials']['discord_token']
+discord_key = os.getenv("discord_token")
+
+
+# config = configparser.ConfigParser()
+# config.read('config.ini')
+# discord_key = config['credentials']['discord_token']
 
 
 async def send_message(message, user_message, is_private):
     try:
         response = responses.handle_response(user_message)
-        await message.author.send(message) if is_private else await message.channel.send(response)
+        await message.author.send(
+            message
+        ) if is_private else await message.channel.send(response)
     except Exception as e:
         print(e)
 
@@ -25,7 +30,7 @@ def run_discord_bot():
 
     @client.event
     async def on_ready():
-        print(f'{client.user} is now running :3')
+        print(f"{client.user} is now running :3")
 
     @client.event
     async def on_message(message):
@@ -37,7 +42,7 @@ def run_discord_bot():
 
         print(f"{username} said:'{user_message}' ({channel})")
 
-        if user_message[0] == '?':
+        if user_message[0] == "?":
             user_message = user_message[1:]
             await send_message(message, user_message, is_private=True)
         else:
