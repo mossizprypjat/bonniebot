@@ -15,5 +15,5 @@ like this:
 nasa_api_key = your_nasa_key
 directory = path_to_your_directory
 ```
-
+But then you will need to uncomment some lines in the code, I work with and .env file.
 Or you can hardcode the key and path , I'm not your mom I can't tell you what to do.
